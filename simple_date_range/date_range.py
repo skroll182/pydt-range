@@ -1,5 +1,5 @@
 from datetime import date, datetime, timedelta
-from typing import Union
+from typing import Iterable, Union
 
 from simple_date_range.const import (
     MICROSECONDS_IN_DAY,
@@ -13,7 +13,7 @@ def date_range(
     start: Union[datetime, date],
     end: Union[datetime, date],
     step: timedelta = timedelta(days=1),
-) -> datetime:
+) -> Iterable[datetime]:
     if type(start) == date:
         start = datetime(start.year, start.month, start.day)
     if type(end) == date:
