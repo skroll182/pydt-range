@@ -14,9 +14,9 @@ def date_range(
     end: Union[datetime, date],
     step: timedelta = timedelta(days=1),
 ) -> datetime:
-    if isinstance(start, date):
+    if type(start) == date:
         start = datetime(start.year, start.month, start.day)
-    if isinstance(end, date):
+    if type(end) == date:
         end = datetime(end.year, end.month, end.day)
     start_ts = int(start.timestamp() * 1_000_000)
     end_ts = int(end.timestamp() * 1_000_000)
