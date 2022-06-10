@@ -18,8 +18,8 @@ def date_range(
         start = datetime(start.year, start.month, start.day)
     if isinstance(end, date):
         end = datetime(end.year, end.month, end.day)
-    start_ts = int(start.timestamp() * 1000000)
-    end_ts = int(end.timestamp() * 1000000)
+    start_ts = int(start.timestamp() * 1_000_000)
+    end_ts = int(end.timestamp() * 1_000_000)
     step_ts = 0
     for attr, factor in (
         ("microseconds", 1),
@@ -34,4 +34,4 @@ def date_range(
             pass
 
     for ts in range(start_ts, end_ts, step_ts):
-        yield datetime.fromtimestamp(ts / 1000000)
+        yield datetime.fromtimestamp(ts / 1_000_000)
