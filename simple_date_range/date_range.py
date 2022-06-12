@@ -15,6 +15,30 @@ def date_range(
     step: timedelta = timedelta(days=1),
     format_: Optional[str] = None,
 ) -> Iterable[datetime]:
+    """Simple date range generator.
+
+    Generates datetime objects in range from ``start`` (inclusive) to ``end`` (exclusive)
+
+    Example:
+
+    >>> from datetime import datetime, timedelta
+    >>> from simple_date_range.date_range import date_range
+    >>> start_dt = datetime(2022, 1, 1)
+    >>> end_dt = datetime(2022, 1, 5)
+    >>> step = timedelta(days=1)
+    >>> for dt in date_range(start_dt, end_dt, step):
+    >>>     print(dt)
+    2022-01-01 00:00:00
+    2022-01-02 00:00:00
+    2022-01-03 00:00:00
+    2022-01-04 00:00:00
+
+    :param start: Starting datetime. Can be datetime, date or str object
+    :param end: Ending datetime. Can be datetime, date or str object
+    :param step: Range step.
+    :param format_: If either start or end parameters are str format_ should be specified for datetime.strptime method
+    :return: Iterable returning datetime objects
+    """
     if type(start) == date:
         start = datetime(start.year, start.month, start.day)
     elif type(start) == str:
