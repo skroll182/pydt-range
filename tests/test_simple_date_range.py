@@ -95,41 +95,47 @@ def test_date_range_negative_range_end_gt_start(start, end, step, format_):
     assert len(datetimes) == 0
 
 
-def test_date_range_hours_step():
-    start = datetime(2022, 1, 1)
-    end = datetime(2022, 1, 2)
-    step = timedelta(hours=1)
+@pytest.mark.parametrize(
+    "start,end,step,expected_len,expected_first,expected_last",
+    [
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 2),
+            timedelta(hours=1),
+            24,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 23),
+        ),
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 1),
+            timedelta(minutes=1),
+            60,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 59),
+        ),
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 1),
+            timedelta(seconds=1),
+            60,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 0, 59),
+        ),
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 0, 1),
+            timedelta(microseconds=1),
+            1_000_000,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 0, 0, 999_999),
+        ),
+    ],
+)
+def test_date_range_steps(
+    start, end, step, expected_len, expected_first, expected_last
+):
     datetimes = list(date_range(start, end, step))
-    assert len(datetimes) == 24
-    assert datetimes[0] == datetime(2022, 1, 1)
-    assert datetimes[-1] == datetime(2022, 1, 1, 23)
-
-
-def test_date_range_minutes_step():
-    start = datetime(2022, 1, 1)
-    end = datetime(2022, 1, 1, 1)
-    step = timedelta(minutes=1)
-    datetimes = list(date_range(start, end, step))
-    assert len(datetimes) == 60
-    assert datetimes[0] == datetime(2022, 1, 1)
-    assert datetimes[-1] == datetime(2022, 1, 1, 0, 59)
-
-
-def test_date_range_seconds_step():
-    start = datetime(2022, 1, 1)
-    end = datetime(2022, 1, 1, 0, 1)
-    step = timedelta(seconds=1)
-    datetimes = list(date_range(start, end, step))
-    assert len(datetimes) == 60
-    assert datetimes[0] == datetime(2022, 1, 1)
-    assert datetimes[-1] == datetime(2022, 1, 1, 0, 0, 59)
-
-
-def test_date_range_microseconds_step():
-    start = datetime(2022, 1, 1)
-    end = datetime(2022, 1, 1, 0, 0, 1)
-    step = timedelta(microseconds=1)
-    datetimes = list(date_range(start, end, step))
-    assert len(datetimes) == 1_000_000
-    assert datetimes[0] == datetime(2022, 1, 1)
-    assert datetimes[-1] == datetime(2022, 1, 1, 0, 0, 0, 999_999)
+    assert len(datetimes) == expected_len
+    assert datetimes[0] == expected_first
+    assert datetimes[-1] == expected_last
