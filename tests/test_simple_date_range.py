@@ -4,8 +4,10 @@ import pytest
 
 from simple_date_range import __version__
 from simple_date_range.const import (
+    MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
     MICROSECONDS_IN_HOUR,
+    MICROSECONDS_IN_MILLISECOND,
     MICROSECONDS_IN_MINUTE,
     MICROSECONDS_IN_SECOND,
 )
@@ -17,10 +19,12 @@ def test_version():
 
 
 def test_constants():
+    assert MICROSECONDS_IN_MILLISECOND == 1000
     assert MICROSECONDS_IN_SECOND == 1e6
     assert MICROSECONDS_IN_MINUTE == 6e7
     assert MICROSECONDS_IN_HOUR == 3.6e9
     assert MICROSECONDS_IN_DAY == 8.64e10
+    assert MICOSECONDS_IN_WEEK == 6.048e11
 
 
 @pytest.mark.parametrize(
@@ -125,10 +129,26 @@ def test_date_range_negative_range_end_gt_start(start, end, step, format_):
         (
             datetime(2022, 1, 1),
             datetime(2022, 1, 1, 0, 0, 1),
+            timedelta(milliseconds=1),
+            1000,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 0, 0, 999_000),
+        ),
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 1, 0, 0, 1),
             timedelta(microseconds=1),
             1_000_000,
             datetime(2022, 1, 1),
             datetime(2022, 1, 1, 0, 0, 0, 999_999),
+        ),
+        (
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 16),
+            timedelta(weeks=1),
+            3,
+            datetime(2022, 1, 1),
+            datetime(2022, 1, 15),
         ),
     ],
 )
