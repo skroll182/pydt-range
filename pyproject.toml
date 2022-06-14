@@ -1,8 +1,9 @@
 [tool.poetry]
 name = "simple-date-range"
-version = "0.1.0"
-description = ""
-authors = ["Your Name <you@example.com>"]
+version = "1.0.0"
+description = "Simple Date Range Generator"
+authors = ["Kirill Olar <kirill.olar26@gmail.com>"]
+repository = "https://github.com/skroll182/simple-date-range"
 
 [tool.poetry.dependencies]
 python = "^3.7"
