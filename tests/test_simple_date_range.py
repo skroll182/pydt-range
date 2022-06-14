@@ -15,7 +15,7 @@ from simple_date_range.date_range import date_range
 
 
 def test_version():
-    assert __version__ == "0.1.0"
+    assert __version__ == "1.0.0"
 
 
 def test_constants():
