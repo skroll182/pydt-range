@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "simple-date-range"
 version = "1.0.0"
-description = "Simple Date Range Generator"
+description = "simple-date-range is purely python mini library that allows to iterate over datetime objects with a specified step (similar to built-in range())"
 authors = ["Kirill Olar <kirill.olar26@gmail.com>"]
 repository = "https://github.com/skroll182/simple-date-range"
 
