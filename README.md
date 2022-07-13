@@ -1,16 +1,16 @@
-# Simple Date Range
-[![tests](https://github.com/skroll182/datetime-range/actions/workflows/test.yml/badge.svg)](https://github.com/skroll182/datetime-range/actions/workflows/test.yml)
+# Python Datetime Range
+[![tests](https://github.com/skroll182/pydt-range/actions/workflows/test.yml/badge.svg)](https://github.com/skroll182/datetime-range/actions/workflows/test.yml)
 
-`datetime-range` is purely python mini library that allows to iterate over `datetime` objects with a specified step (similar to built-in `range()`)
+`pydt-range` is purely python mini library that allows to iterate over `datetime` objects with a specified step (similar to built-in `range()`)
 
 ## Installation
 ### Pip
 ```bash
-pip install datetime-range
+pip install pydt-range
 ```
 ### Poetry
 ```bash
-poetry add datetime-range
+poetry add pydt-range
 ```
 
 ## Usage
@@ -19,7 +19,7 @@ poetry add datetime-range
 ```python
 from datetime import datetime
 
-from datetime_range import datetime_range
+from pydt_range import datetime_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
@@ -43,7 +43,7 @@ for dt in datetime_range(start_dt, end_dt):  # Default step is timedelta(days=1)
 ```python
 from datetime import datetime, timedelta
 
-from datetime_range import datetime_range
+from pydt_range import datetime_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
