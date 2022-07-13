@@ -11,7 +11,7 @@ from datetime_range.const import (
 )
 
 
-def date_range(
+def datetime_range(
     start: Union[datetime, date, str],
     end: Union[datetime, date, str],
     step: timedelta = timedelta(days=1),
@@ -24,11 +24,11 @@ def date_range(
     Example:
 
     >>> from datetime import datetime, timedelta
-    >>> from datetime_range.date_range import date_range
+    >>> from datetime_range.datetime_range import datetime_range
     >>> start_dt = datetime(2022, 1, 1)
     >>> end_dt = datetime(2022, 1, 5)
     >>> step = timedelta(days=1)
-    >>> for dt in date_range(start_dt, end_dt, step):
+    >>> for dt in datetime_range(start_dt, end_dt, step):
     >>>     print(dt)
     2022-01-01 00:00:00
     2022-01-02 00:00:00

@@ -19,12 +19,12 @@ poetry add datetime-range
 ```python
 from datetime import datetime
 
-from datetime_range.date_range import date_range
+from datetime_range import datetime_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
 
-for dt in date_range(start_dt, end_dt):  # Default step is timedelta(days=1)
+for dt in datetime_range(start_dt, end_dt):  # Default step is timedelta(days=1)
     print(dt)
 """
 2022-01-01 00:00:00
@@ -43,13 +43,13 @@ for dt in date_range(start_dt, end_dt):  # Default step is timedelta(days=1)
 ```python
 from datetime import datetime, timedelta
 
-from datetime_range.date_range import date_range
+from datetime_range import datetime_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
 step = timedelta(hours=6)
 
-for dt in date_range(start_dt, end_dt, step):
+for dt in datetime_range(start_dt, end_dt, step):
     print(dt)
 """
 2022-01-01 00:00:00

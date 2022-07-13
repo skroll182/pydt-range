@@ -2,7 +2,7 @@ from datetime import date, datetime, timedelta
 
 import pytest
 
-from datetime_range import __version__
+from datetime_range import __version__, datetime_range
 from datetime_range.const import (
     MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
@@ -11,7 +11,6 @@ from datetime_range.const import (
     MICROSECONDS_IN_MINUTE,
     MICROSECONDS_IN_SECOND,
 )
-from datetime_range.date_range import date_range
 
 
 def test_version():
@@ -40,7 +39,7 @@ def test_constants():
     ],
 )
 def test_date_range_positive_range(start, end, step, format_):
-    datetimes = list(date_range(start, end, step, format_))
+    datetimes = list(datetime_range(start, end, step, format_))
     assert len(datetimes) > 0
     assert datetimes[0] == datetime(2022, 1, 1)
     assert datetimes[-1] == datetime(2022, 1, 29)
@@ -59,7 +58,7 @@ def test_date_range_positive_range(start, end, step, format_):
     ],
 )
 def test_date_range_negative_range(start, end, step, format_):
-    datetimes = list(date_range(start, end, step, format_))
+    datetimes = list(datetime_range(start, end, step, format_))
     assert len(datetimes) > 0
     assert datetimes[0] == datetime(2022, 1, 30)
     assert datetimes[-1] == datetime(2022, 1, 2)
@@ -78,7 +77,7 @@ def test_date_range_negative_range(start, end, step, format_):
     ],
 )
 def test_date_range_positive_range_start_lt_end(start, end, step, format_):
-    datetimes = list(date_range(start, end, step, format_))
+    datetimes = list(datetime_range(start, end, step, format_))
     assert len(datetimes) == 0
 
 
@@ -95,7 +94,7 @@ def test_date_range_positive_range_start_lt_end(start, end, step, format_):
     ],
 )
 def test_date_range_negative_range_end_gt_start(start, end, step, format_):
-    datetimes = list(date_range(start, end, step, format_))
+    datetimes = list(datetime_range(start, end, step, format_))
     assert len(datetimes) == 0
 
 
@@ -155,7 +154,7 @@ def test_date_range_negative_range_end_gt_start(start, end, step, format_):
 def test_date_range_steps(
     start, end, step, expected_len, expected_first, expected_last
 ):
-    datetimes = list(date_range(start, end, step))
+    datetimes = list(datetime_range(start, end, step))
     assert len(datetimes) == expected_len
     assert datetimes[0] == expected_first
     assert datetimes[-1] == expected_last
