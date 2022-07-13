@@ -24,7 +24,7 @@ def datetime_range(
     Example:
 
     >>> from datetime import datetime, timedelta
-    >>> from pydt_range.datetime_range import datetime_range
+    >>> from pydt_range import datetime_range
     >>> start_dt = datetime(2022, 1, 1)
     >>> end_dt = datetime(2022, 1, 5)
     >>> step = timedelta(days=1)
