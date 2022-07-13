@@ -1,4 +1,5 @@
 # Simple Date Range
+[![tests](https://github.com/skroll182/simple-date-range/actions/workflows/test.yml/badge.svg)](https://github.com/skroll182/simple-date-range/actions/workflows/test.yml)
 
 `simple-date-range` is purely python mini library that allows to iterate over `datetime` objects with a specified step (similar to built-in `range()`)
 
