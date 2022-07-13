@@ -1,7 +1,7 @@
 from datetime import date, datetime, timedelta
 from typing import Iterable, Optional, Union
 
-from simple_date_range.const import (
+from datetime_range.const import (
     MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
     MICROSECONDS_IN_HOUR,
@@ -24,7 +24,7 @@ def date_range(
     Example:
 
     >>> from datetime import datetime, timedelta
-    >>> from simple_date_range.date_range import date_range
+    >>> from datetime_range.date_range import date_range
     >>> start_dt = datetime(2022, 1, 1)
     >>> end_dt = datetime(2022, 1, 5)
     >>> step = timedelta(days=1)

@@ -2,8 +2,8 @@ from datetime import date, datetime, timedelta
 
 import pytest
 
-from simple_date_range import __version__
-from simple_date_range.const import (
+from datetime_range import __version__
+from datetime_range.const import (
     MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
     MICROSECONDS_IN_HOUR,
@@ -11,7 +11,7 @@ from simple_date_range.const import (
     MICROSECONDS_IN_MINUTE,
     MICROSECONDS_IN_SECOND,
 )
-from simple_date_range.date_range import date_range
+from datetime_range.date_range import date_range
 
 
 def test_version():

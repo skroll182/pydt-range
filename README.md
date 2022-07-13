@@ -1,29 +1,30 @@
 # Simple Date Range
-[![tests](https://github.com/skroll182/simple-date-range/actions/workflows/test.yml/badge.svg)](https://github.com/skroll182/simple-date-range/actions/workflows/test.yml)
+[![tests](https://github.com/skroll182/datetime-range/actions/workflows/test.yml/badge.svg)](https://github.com/skroll182/datetime-range/actions/workflows/test.yml)
 
-`simple-date-range` is purely python mini library that allows to iterate over `datetime` objects with a specified step (similar to built-in `range()`)
+`datetime-range` is purely python mini library that allows to iterate over `datetime` objects with a specified step (similar to built-in `range()`)
 
 ## Installation
 ### Pip
 ```bash
-pip install simple-date-range
+pip install datetime-range
 ```
 ### Poetry
 ```bash
-poetry add simple-date-range
+poetry add datetime-range
 ```
 
 ## Usage
 ### With default step
+
 ```python
 from datetime import datetime
 
-from simple_date_range.date_range import date_range
+from datetime_range.date_range import date_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
 
-for dt in date_range(start_dt, end_dt): # Default step is timedelta(days=1)
+for dt in date_range(start_dt, end_dt):  # Default step is timedelta(days=1)
     print(dt)
 """
 2022-01-01 00:00:00
@@ -38,10 +39,11 @@ for dt in date_range(start_dt, end_dt): # Default step is timedelta(days=1)
 """
 ```
 ### With custom step
+
 ```python
 from datetime import datetime, timedelta
 
-from simple_date_range.date_range import date_range
+from datetime_range.date_range import date_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
