@@ -41,13 +41,14 @@ for dt in datetime_range(start_dt, end_dt):  # Default step is timedelta(days=1)
 ### With custom step
 
 ```python
-from datetime import datetime, timedelta
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 from pydt_range import datetime_range
 
 start_dt = datetime(2022, 1, 1)
 end_dt = datetime(2022, 1, 10)
-step = timedelta(hours=6)
+step = relativedelta(hours=6)
 
 for dt in datetime_range(start_dt, end_dt, step):
     print(dt)
