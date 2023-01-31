@@ -1,20 +1,20 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime
 from typing import Iterable, Optional, Union
 
-from pydt_range.const import (
-    MICROSECONDS_IN_DAY,
-    MICROSECONDS_IN_HOUR,
-    MICROSECONDS_IN_MILLISECOND,
-    MICROSECONDS_IN_MINUTE,
-    MICROSECONDS_IN_SECOND,
-    MICROSECONDS_IN_WEEK,
-)
+from dateutil.relativedelta import relativedelta
+
+
+def is_infinite(start: datetime, end: datetime, step: relativedelta) -> bool:
+    if start < end:
+        return (end - start) < (end - (start + step))
+    else:
+        return (start - end) < ((start + step) - end)
 
 
 def datetime_range(
     start: Union[datetime, date, str],
     end: Union[datetime, date, str],
-    step: timedelta = timedelta(days=1),
+    step: relativedelta = relativedelta(days=1),
     format_: Optional[str] = None,
 ) -> Iterable[datetime]:
     """Simple date range generator.
@@ -23,11 +23,12 @@ def datetime_range(
 
     Example:
 
-    >>> from datetime import datetime, timedelta
+    >>> from datetime import datetime
+    >>> from dateutil.relativedelta import relativedelta
     >>> from pydt_range import datetime_range
     >>> start_dt = datetime(2022, 1, 1)
     >>> end_dt = datetime(2022, 1, 5)
-    >>> step = timedelta(days=1)
+    >>> step = relativedelta(days=1)
     >>> for dt in datetime_range(start_dt, end_dt, step):
     >>>     print(dt)
     2022-01-01 00:00:00
@@ -67,22 +68,13 @@ def datetime_range(
             "'end' parameter type should be one of (datetime, date, str)"
         )
 
-    start_ts = int(start.timestamp() * 1_000_000)
-    end_ts = int(end.timestamp() * 1_000_000)
-    step_ts = 0
-    for attr, factor in (
-        ("microseconds", 1),
-        ("milliseconds", MICROSECONDS_IN_MILLISECOND),
-        ("seconds", MICROSECONDS_IN_SECOND),
-        ("minutes", MICROSECONDS_IN_MINUTE),
-        ("hours", MICROSECONDS_IN_HOUR),
-        ("days", MICROSECONDS_IN_DAY),
-        ("weeks", MICROSECONDS_IN_WEEK),
-    ):
-        try:
-            step_ts += getattr(step, attr) * factor
-        except AttributeError:
-            pass
-
-    for ts in range(start_ts, end_ts, step_ts):
-        yield datetime.fromtimestamp(ts / 1_000_000)
+    if not is_infinite(start, end, step):
+        current_dt = start
+        if start < end:
+            while current_dt < end:
+                yield current_dt
+                current_dt += step
+        elif start > end:
+            while current_dt > end:
+                yield current_dt
+                current_dt += step
