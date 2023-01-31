@@ -2,12 +2,12 @@ from datetime import date, datetime, timedelta
 from typing import Iterable, Optional, Union
 
 from pydt_range.const import (
-    MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
     MICROSECONDS_IN_HOUR,
     MICROSECONDS_IN_MILLISECOND,
     MICROSECONDS_IN_MINUTE,
     MICROSECONDS_IN_SECOND,
+    MICROSECONDS_IN_WEEK,
 )
 
 
@@ -77,7 +77,7 @@ def datetime_range(
         ("minutes", MICROSECONDS_IN_MINUTE),
         ("hours", MICROSECONDS_IN_HOUR),
         ("days", MICROSECONDS_IN_DAY),
-        ("weeks", MICOSECONDS_IN_WEEK),
+        ("weeks", MICROSECONDS_IN_WEEK),
     ):
         try:
             step_ts += getattr(step, attr) * factor

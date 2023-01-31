@@ -4,12 +4,12 @@ import pytest
 
 from pydt_range import __version__, datetime_range
 from pydt_range.const import (
-    MICOSECONDS_IN_WEEK,
     MICROSECONDS_IN_DAY,
     MICROSECONDS_IN_HOUR,
     MICROSECONDS_IN_MILLISECOND,
     MICROSECONDS_IN_MINUTE,
     MICROSECONDS_IN_SECOND,
+    MICROSECONDS_IN_WEEK,
 )
 
 
@@ -23,7 +23,7 @@ def test_constants():
     assert MICROSECONDS_IN_MINUTE == 6e7
     assert MICROSECONDS_IN_HOUR == 3.6e9
     assert MICROSECONDS_IN_DAY == 8.64e10
-    assert MICOSECONDS_IN_WEEK == 6.048e11
+    assert MICROSECONDS_IN_WEEK == 6.048e11
 
 
 @pytest.mark.parametrize(
