@@ -1,3 +1,3 @@
-from pydt_range.datetime_range import datetime_range
+from pydt_range.datetime_range import datetime_range, is_infinite
 
-__version__ = "1.0.2"
+__version__ = "1.1.0"
